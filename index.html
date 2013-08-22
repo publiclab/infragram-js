@@ -78,6 +78,7 @@
                 <button id="raw" type="button" class="btn active">Raw</button>
                 <button id="ndvi" type="button" class="btn">NDVI</button>
                 <button id="nir" type="button" class="btn">NIR</button>
+                <button id="ngb" type="button" class="btn">NGB</button>
               </div>
               <button style="display:none;margin-left:30px;" id="download" type="button" class="btn btn-primary"><i class="icon-white icon-download"></i> Download</button>
             </span>
@@ -110,8 +111,10 @@
             $('button#raw').on('click', function() { set_mode("raw"); });
             $('button#ndvi').on('click', function() { set_mode("ndvi"); });
             $('button#nir').on('click', function() { set_mode("nir"); });
+            $('button#ngb').on('click', function() { var elem = document.getElementById("r_exp"); elem.value="R"; var elem = document.getElementById("g_exp"); elem.value="B"; var elem = document.getElementById("b_exp"); elem.value="G"; save_expressions($('#r_exp').val(),$('#g_exp').val(),$('#b_exp').val()); set_mode("infragrammar"); });
             $('#download').on('click', function() { download(); });
             $('#infragrammar').on('submit', function() { save_expressions($('#r_exp').val(),$('#g_exp').val(),$('#b_exp').val()); set_mode("infragrammar"); });
+            
             $('#infragrammar_mono').on('submit', function() { save_expressions($('#m_exp').val(),$('#m_exp').val(),$('#m_exp').val()); set_mode("infragrammar"); });
 
             $('button#grey').on('click', function() { colormap = greyscale_colormap; update(image); });
