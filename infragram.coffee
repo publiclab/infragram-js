@@ -150,9 +150,12 @@ update = (img) ->
             [r,g,b] = get_channels(img)
             ndvi_img = ndvi(r,b)
             [[min],[max]] = ndvi_img.extrema()
+            # hack to display full range, -1 to 1, by default:
+            min=-1
+            max=1
             normalize = (x) -> (x - min) / (max - min)
             result = colorify(ndvi_img, (x) -> colormap(normalize(x)))
-            update_colorbar(min, max)
+            update_colorbar(min,max)
         else if mode == "raw"
             result = img
         else if mode == "nir"
