@@ -328,6 +328,17 @@ $(document).ready(() ->
         $("#btn-colorize").addClass("active")
     )
 
+    $("#colormap_fastie").click(() ->
+        if webGlSupported
+            glHandleColormap(colormap_fastie)
+            glHandleOnClickNdvi()
+        else
+            colorized = true
+            colormap = colormap_fastie
+            run_colorize()
+        $("#btn-colorize").addClass("active")
+    )
+
     $("#stretched_colormap").click(() ->
         if webGlSupported
             glHandleStretchedColormap()
