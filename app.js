@@ -36,7 +36,23 @@ var ioOptions = {
     rememberTransport: false,
     transports: ['WebSocket', 'AJAX long-polling']
 };
+
+/////// SSL added 20160721 by icarito
+
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/infragram.org/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/infragram.org/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/infragram.org/fullchain.pem')
+};
+
+var sserver = https.createServer(options, app);
+
+////////
 var io = require('socket.io', ioOptions).listen(server, {log: false});
+var sio = require('socket.io', ioOptions).listen(sserver, {log: false});
 
 // all environments
 app.set('port', process.env.PORT || 80);
@@ -70,5 +86,7 @@ app.get('/sandbox/beta/', function (req, res) { res.redirect('/sandbox/'); });
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+sserver.listen(443);
 
 io.sockets.on('connection', upload.onConnection);
+sio.sockets.on('connection', upload.onConnection);
