@@ -163,6 +163,16 @@ colormap2 = segmented_colormap(
           [ 0.7, [255,255,0],  [255,50,50]],
           [0.9, [255,50,50], [255,50,50]] ])
 
+colormap_fastie = segmented_colormap(
+        [ [   0,   [255,255,255],   [0,0,0]],
+          [ 0.167, [0,0,0],         [255,255,255]],
+          [ 0.33,  [255,255,255],   [0,0,0]],
+          [ 0.5,   [0,0,0],         [140,140,255]],
+          [ 0.55,  [140,140,255],   [0,255,0]],
+          [ 0.63,  [0,255,0],       [255,255,0]],
+          [ 0.75,  [255,255,0],     [255,0,0]],
+          [ 0.95,  [255,0,0],       [255,0,255]] ])
+
 colormap = colormap1
 
 update_colorbar = (min,max) =>        
@@ -183,7 +193,8 @@ update_colorbar = (min,max) =>
         $("#colorbar-max")[0].textContent = max.toFixed(2)
 
 update = (img) ->
-        $('#colorbar-container')[0].style.display = 'none'
+        if $('#colorbar-container')[0]
+            $('#colorbar-container')[0].style.display = 'none'
         if mode == "ndvi"
             [r,g,b] = get_channels(img)
             ndvi_img = ndvi(r,b)

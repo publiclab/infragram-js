@@ -188,6 +188,7 @@ glGetCurrentImage = () ->
 
 glHandleDefaultColormap   = ()                 -> imgContext.selColormap = mapContext.selColormap = 0
 glHandleStretchedColormap = ()                 -> imgContext.selColormap = mapContext.selColormap = 2
+glHandleColormap = (colormap)                  -> imgContext.selColormap = mapContext.selColormap = 3
 glSaveExpression          = (a, b, c)          -> imgContext.expression = [a, b, c]
 glRunInfragrammar         = (mode)             -> glSetMode(imgContext, "ndvi")
 glHandleOnClickRaw        = ()                 -> glSetMode(imgContext, "raw")
