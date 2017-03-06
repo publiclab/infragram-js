@@ -15,7 +15,6 @@ b_exp = "";
 m_exp = "";
 
 JsImage = (function() {
-
   function JsImage(data, width, height, channels) {
     this.data = data;
     this.width = width;
@@ -219,26 +218,28 @@ colormap_fastie = segmented_colormap([[0, [255, 255, 255], [0, 0, 0]], [0.167, [
 
 colormap = colormap1;
 
-update_colorbar = function(min, max) {
-  var b, ctx, d, e, g, i, j, k, r, _i, _j, _ref, _ref1, _ref2;
-  $('#colorbar-container')[0].style.display = 'inline-block';
-  e = $('#colorbar')[0];
-  ctx = e.getContext("2d");
-  d = ctx.getImageData(0, 0, e.width, e.height);
-  for (i = _i = 0, _ref = e.width; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-    for (j = _j = 0, _ref1 = e.height; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
-      _ref2 = colormap(i / e.width), r = _ref2[0], g = _ref2[1], b = _ref2[2];
-      k = 4 * (i + j * e.width);
-      d.data[k + 0] = r;
-      d.data[k + 1] = g;
-      d.data[k + 2] = b;
-      d.data[k + 3] = 255;
+update_colorbar = (function(_this) {
+  return function(min, max) {
+    var b, ctx, d, e, g, i, j, k, r, _i, _j, _ref, _ref1, _ref2;
+    $('#colorbar-container')[0].style.display = 'inline-block';
+    e = $('#colorbar')[0];
+    ctx = e.getContext("2d");
+    d = ctx.getImageData(0, 0, e.width, e.height);
+    for (i = _i = 0, _ref = e.width; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (j = _j = 0, _ref1 = e.height; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
+        _ref2 = colormap(i / e.width), r = _ref2[0], g = _ref2[1], b = _ref2[2];
+        k = 4 * (i + j * e.width);
+        d.data[k + 0] = r;
+        d.data[k + 1] = g;
+        d.data[k + 2] = b;
+        d.data[k + 3] = 255;
+      }
     }
-  }
-  ctx.putImageData(d, 0, 0);
-  $("#colorbar-min")[0].textContent = min.toFixed(2);
-  return $("#colorbar-max")[0].textContent = max.toFixed(2);
-};
+    ctx.putImageData(d, 0, 0);
+    $("#colorbar-min")[0].textContent = min.toFixed(2);
+    return $("#colorbar-max")[0].textContent = max.toFixed(2);
+  };
+})(this);
 
 update = function(img) {
   var b, g, max, min, ndvi_img, normalize, r, result, _ref, _ref1;
