@@ -47,7 +47,8 @@ block content
         div.meta
           span.author= "by "+(image.author || "anon")
           span.updated_at= " on "+image.updated_at+" "
-          a(href="#delete-modal" data-toggle="modal" onclick="$('#delete-form').attr('action', '/delete/" + image._id + "');") Delete
+          a(href="mailto:moderators@publiclab.org?subject=Reporting spam on Infragram.org&body=https://infragram.org") Flag
+          a(href="#delete-modal" data-toggle="modal" onclick="$('#delete-form').attr('action', '/delete/" + image._id + "');") X
       if (index+1) % 4 == 0
         | </div><hr style="clear:both;"/><div class="row-fluid">
 
