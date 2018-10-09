@@ -2,6 +2,17 @@
 
 The code behind (and in front of) Infragram.org -- providing multispectral image compositing in the browser, as well as image saving online.
 
+### Deprecation warning
+
+We are seeking to replace the interactive interface at https://infragram.org/sandbox/ with a self-contained JavaScript application at:
+
+https://github.com/publiclab/infragram
+
+The new `infragram` repository is separate from the file-storage systems in this Node-based system. We plan to make the `infragram` interface linkable to various storage back-ends, including PublicLab.org.
+
+The new system is far more modularly written and easier to read & maintain. We'd love help completing it!
+
+
 ###Developers
 
 To get started,
