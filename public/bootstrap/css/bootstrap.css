@@ -8,7 +8,7 @@
  * Designed and built with all the love in the world by @mdo and @fat.
  */
 
-.clearfix {
+ .clearfix {
   *zoom: 1;
 }
 
@@ -3657,11 +3657,6 @@ input[type="submit"].btn.btn-mini {
 
 .btn-group > .btn + .btn {
   margin-left: -1px;
-  position: relative;
-  padding: 6px 12px;
-  color: #428bca;
-  background-color: #fff;
-  border: 1px solid #ddd;
 }
 
 .btn-group > .btn,
