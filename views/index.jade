@@ -65,6 +65,6 @@ block content
         - else
           span.page.disabled.btn=i
     - if (p.current < p.total)
-      a.page.btn(href="/p/" + p.total + "#new") Next →
+      a.page.btn(href="/p/" + (p.current + 1) + "#new") Next →
     - else
       button.btn-disabled.page.btn(disabled=true) Next →
