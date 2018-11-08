@@ -9,3 +9,24 @@ h1,h2,h3,h4,h5,h6{
   font-family:junctionregular, lucida grande,lucida sans console,sans-serif;
   font-weight:normal
 }
+
+.btn-group > .btn {
+  background: none;
+  color: #428bca;
+}
+
+.btn.disabled,
+.btn[disabled] {
+  cursor: default;
+  background-image: none;
+  background: #428bca;
+  color: white;
+  opacity: 1;
+}
+
+.btn-disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5!important;
+  background: transparent !important;
+  color: #428bca !important;
+}

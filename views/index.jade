@@ -55,11 +55,9 @@ block content
   div.btn-group
     - var p = {current: parseInt(pageNumber), total: parseInt(pageCount)}
     - if (p.current > 1)
-      a.page.btn(href="/#new") &lt;&lt;
-      a.page.btn(href="/p/" + (p.current - 1) + "#new") &lt;
+      a.page.btn(href="/p/" + (p.current - 1) + "#new") ← Previous
     - else
-      span.page.disabled.btn <<
-      span.page.disabled.btn <
+      button.btn-disabled.page.btn(disabled=true) ← Previous
     - for (var i = p.current - 5; i <= p.current + 5; ++i)
       - if (i <= p.total && i > 0)
         - if (i !== p.current)
@@ -67,8 +65,6 @@ block content
         - else
           span.page.disabled.btn=i
     - if (p.current < p.total)
-      a.page.btn(href="/p/" + (p.current + 1) + "#new") &gt;
-      a.page.btn(href="/p/" + p.total + "#new") &gt;&gt;
+      a.page.btn(href="/p/" + (p.current + 1) + "#new") Next →
     - else
-      span.page.disabled.btn &gt;
-      span.page.disabled.btn &gt;&gt;
+      button.btn-disabled.page.btn(disabled=true) Next →
