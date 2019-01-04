@@ -36,13 +36,37 @@ var ioOptions = {
     rememberTransport: false,
     transports: ['WebSocket', 'AJAX long-polling']
 };
+
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/infragram.org/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/infragram.org/cert.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/infragram.org/fullchain.pem')
+};
+
+var sserver = https.createServer(options, app);
+
 var io = require('socket.io', ioOptions).listen(server, {log: false});
+var sio = require('socket.io', ioOptions).listen(sserver, {log: false});
+//var io = require('socket.io', ioOptions).listen(server);
+//var sio = require('socket.io', ioOptions).listen(sserver);
 
 // all environments
 app.set('port', process.env.PORT || 80);
 //app.set('port', process.env.PORT || 8001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(function(req,res,next) {
+  if (!/https/.test(req.protocol)){
+     res.redirect("https://" + req.headers.host + req.url);
+  } else {
+     return next();
+  } 
+});
+
 app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
 app.use(express.json());
